@@ -22,10 +22,10 @@
 #define STEP_TIME 0.20 // Step time
 #define LINK_SIZE 0.5
 #define LINK_NUMBER 6
-#define ITERATIONS 10
+#define ITERATIONS 1
 
 // -- Environment
-#define BORDER 1.0
+#define BORDER 4.0
 #define BOUNCE 0.5
 
 // -- Render

@@ -1,6 +1,6 @@
 #include "kin.h"
 
-Arm* init_arm(){
+Arm* init_arm(Vector3 start){
     Arm* arm = (Arm*) malloc(sizeof(Arm));
     arm->links = malloc(sizeof(Link) * LINK_NUMBER);
     arm->n_links = 0;
@@ -9,7 +9,7 @@ Arm* init_arm(){
         arm->links[i] = l;
         arm->n_links++;   
     }
-    arm->anchor = (Vector3){0.0, 0.0, 0.0};
+    arm->anchor = start;
     return arm;
 }
 void free_arm(Arm* arm){

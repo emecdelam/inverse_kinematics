@@ -16,7 +16,7 @@ int main() {
 
     // -- Inits
     Camera3D* camera = init_camera();
-    Arm* arm = init_arm();
+    Arm* arm = init_arm((Vector3){.x = 0, .y = 0, .z=0});
 
 
     float time = 0.0;
@@ -33,9 +33,9 @@ int main() {
         if (dt > 0.016f) dt = 0.016f;
         time += dt;
 
-        // Calculate a 2D circle in x-y plane, z=0
+
         Vector3 target;
-        target.x = 2.0 * cosf(1.0 * time) * sinf(0.5 * time);
+        target.x = 2.0 * cosf(cosf(time) * time) * sinf(1.0 * time);
         target.y = 2.0 * fabs(cosf(0.5 * time));
         target.z = 2.0 * sinf(1.0 * time);;
 
@@ -47,10 +47,9 @@ int main() {
         BeginDrawing();
             ClearBackground((Color){ 50, 50, 50, 255 });
 
-
             // -- Draw
             BeginMode3D(*camera);
-                DrawPlane((Vector3){0, 0, 0}, (Vector2){2*BORDER, 2*BORDER}, GRAY);
+                DrawGrid(16, BORDER);
                 render(arm);
                 DrawSphere(target, 0.1, RED);
             EndMode3D();
