@@ -8,7 +8,7 @@
 #include <raylib.h>
 #include <raymath.h>
 #include "utils/log.h"
-
+#include "utils/vec.h"
 
 // -- Viewport
 #define WINDOW_WIDTH 800
@@ -21,8 +21,13 @@
 // -- Physics
 #define STEP_TIME 0.20 // Step time
 #define LINK_SIZE 0.5
-#define LINK_NUMBER 6
-#define ITERATIONS 1
+#define LINK_SIZE_VAR 0.5
+#define LINK_NUMBER 4
+#define LINK_NUMBER_VAR 2
+#define IV_ITERATIONS 1
+#define NODE_SPACING 0.2
+#define GRAVITY ((Vector3){0, -9.81, 0})
+#define VERLET_ITERATIONS 8
 
 // -- Environment
 #define BORDER 4.0

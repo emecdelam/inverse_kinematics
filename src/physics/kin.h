@@ -2,14 +2,14 @@
 
 #include "../cons.h"
 
-typedef struct Link {
+typedef struct ArmLink {
     Vector3 start;
     Vector3 end;
     float length;
-} Link;
+} ArmLink;
 
 typedef struct Arm {
-    Link* links;
+    ArmLink* links;
     int n_links;
     Vector3 anchor;
 } Arm;

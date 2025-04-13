@@ -2,7 +2,8 @@
 #include "controls/keys.c"
 #include "controls/display.c"
 #include "physics/step.c"
-#include "physics/kin.c"
+#include "physics/plant.c"
+
 
 int main() {
     log_info("Starting program");
@@ -16,7 +17,9 @@ int main() {
 
     // -- Inits
     Camera3D* camera = init_camera();
-    Arm* arm = init_arm((Vector3){.x = 0, .y = 0, .z=0});
+    Plant* plant = init_plant((Vector3){0,0,0});
+
+
 
 
     float time = 0.0;
@@ -39,9 +42,10 @@ int main() {
         target.y = 2.0 * fabs(cosf(0.5 * time));
         target.z = 2.0 * sinf(1.0 * time);;
 
+        update_plant(plant, target, dt);
         // -- Step
         step = check_step(time);
-        fabrik(arm, target);
+
 
         // -- Drawing
         BeginDrawing();
@@ -50,8 +54,8 @@ int main() {
             // -- Draw
             BeginMode3D(*camera);
                 DrawGrid(16, BORDER);
-                render(arm);
                 DrawSphere(target, 0.1, RED);
+                draw_plant(plant);
             EndMode3D();
 
             // -- Display
@@ -61,7 +65,6 @@ int main() {
 
     // -- Cleanup
     log_info("Cleaning up...");
-    free_arm(arm);
     CloseWindow();    
     return 0;
 }    

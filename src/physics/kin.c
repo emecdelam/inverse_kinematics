@@ -2,10 +2,10 @@
 
 Arm* init_arm(Vector3 start){
     Arm* arm = (Arm*) malloc(sizeof(Arm));
-    arm->links = malloc(sizeof(Link) * LINK_NUMBER);
+    arm->links = malloc(sizeof(ArmLink) * LINK_NUMBER);
     arm->n_links = 0;
     for (int i = 0 ; i < LINK_NUMBER; i++){
-        Link l = (Link){(Vector3){0.0, i, 0.0}, (Vector3){0.0, i+1, 0.0}, LINK_SIZE};
+        ArmLink l = (ArmLink){(Vector3){0.0, i, 0.0}, (Vector3){0.0, i+1, 0.0}, LINK_SIZE};
         arm->links[i] = l;
         arm->n_links++;   
     }
@@ -17,7 +17,7 @@ void free_arm(Arm* arm){
     free(arm);
 }
 void fabrik(Arm* arm, Vector3 target){
-    for (int i = 0; i < ITERATIONS; i++){
+    for (int i = 0; i < IV_ITERATIONS; i++){
         backward_kinematics(arm, target);
         forward_kinematics(arm);
     }
@@ -25,7 +25,7 @@ void fabrik(Arm* arm, Vector3 target){
 void backward_kinematics(Arm* arm, Vector3 target) {
     arm->links[arm->n_links - 1].end = target;
     for (int i = arm->n_links - 1; i > 0; i--) {
-        Link* curr = &arm->links[i];
+        ArmLink* curr = &arm->links[i];
         Vector3 dir = Vector3Subtract(curr->start, curr->end);
         Vector3 norm = Vector3Normalize(dir);
         curr->start = Vector3Add(curr->end, Vector3Scale(norm, curr->length));
@@ -36,7 +36,7 @@ void backward_kinematics(Arm* arm, Vector3 target) {
 void forward_kinematics(Arm* arm) {
     arm->links[0].start = arm->anchor;
     for (int i = 0; i < arm->n_links; i++) {
-        Link* curr = &arm->links[i];
+        ArmLink* curr = &arm->links[i];
         Vector3 dir = Vector3Subtract(curr->end, curr->start);
         Vector3 norm = Vector3Normalize(dir);
         curr->end = Vector3Add(curr->start, Vector3Scale(norm, curr->length));
