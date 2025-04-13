@@ -42,3 +42,11 @@ void draw_plant(Plant* plant){
         draw_cloth(plant->cloths[i]);
     }
 }
+
+void free_plant(Plant* plant){
+    free_arm(plant->arm);
+    for (int i = 0; i < plant->n_cloth; i++){
+        free_cloth(plant->cloths[i]);
+    }
+    free(plant);
+}

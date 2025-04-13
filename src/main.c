@@ -65,6 +65,7 @@ int main() {
 
     // -- Cleanup
     log_info("Cleaning up...");
+    free_plant(plant);
     CloseWindow();    
     return 0;
 }    
