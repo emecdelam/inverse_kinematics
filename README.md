@@ -11,6 +11,10 @@ The arm is made using FABRIK with a single iteration, it works pretty well for a
 [![Watch the video](https://img.youtube.com/vi/iIbM4RvuPs0/0.jpg
 )](https://youtu.be/iIbM4RvuPs0)
 
+# Red dot
+
+The red dot is the target, right now it is only moving in a circular pattern
+
 
 # Run it yourself :)
 
