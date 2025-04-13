@@ -38,7 +38,7 @@ int main() {
 
 
         Vector3 target;
-        target.x = 2.0 * cosf(cosf(time) * time) * sinf(1.0 * time);
+        target.x = 2.0 * cosf(time) * sinf(3.0 * time);
         target.y = 2.0 * fabs(cosf(0.5 * time));
         target.z = 2.0 * sinf(1.0 * time);;
 

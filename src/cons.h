@@ -20,10 +20,8 @@
 
 // -- Physics
 #define STEP_TIME 0.20 // Step time
-#define LINK_SIZE 0.5
-#define LINK_SIZE_VAR 0.5
+#define LINK_SIZE 1
 #define LINK_NUMBER 4
-#define LINK_NUMBER_VAR 2
 #define IV_ITERATIONS 1
 #define NODE_SPACING 0.2
 #define GRAVITY ((Vector3){0, -9.81, 0})

@@ -5,7 +5,7 @@ Arm* init_arm(Vector3 start){
     arm->links = malloc(sizeof(ArmLink) * LINK_NUMBER);
     arm->n_links = 0;
     for (int i = 0 ; i < LINK_NUMBER; i++){
-        ArmLink l = (ArmLink){(Vector3){0.0, i, 0.0}, (Vector3){0.0, i+1, 0.0}, LINK_SIZE};
+        ArmLink l = (ArmLink){(Vector3){i, i, 0.0}, (Vector3){i+1, i+1, 0.0}, LINK_SIZE};
         arm->links[i] = l;
         arm->n_links++;   
     }
